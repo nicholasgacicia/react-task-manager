@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
+import Footer from './components/Footer';
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -49,23 +50,26 @@ const App = () => {
   }
 
   return (
-    <div className='container'>
+    <div className="App">
       <Header
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
-      {showAddTask && <AddTask
-        onAdd={addTask}
-      />}
-      {tasks.length > 0 ? (
-        <Tasks
-          tasks={tasks}
-          onDelete={deleteTask}
-          onToggle={toggleReminder}
-        />
-      ) : (
-        'You have no tasks. Great job!'
-      )}
+      <div className="container">
+        {showAddTask && <AddTask
+          onAdd={addTask}
+        />}
+        {tasks.length > 0 ? (
+          <Tasks
+            tasks={tasks}
+            onDelete={deleteTask}
+            onToggle={toggleReminder}
+          />
+        ) : (
+          'You have no tasks. Great job!'
+        )}
+      </div>
+      <Footer />
     </div>
   )
 }
