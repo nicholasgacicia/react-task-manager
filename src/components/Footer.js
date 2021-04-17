@@ -16,6 +16,7 @@ const Footer = () => (
         <li className="list-inline-item"><a href="https://www.nicholasgacicia.com/#portfolio">Portfolio</a></li>
         <li className="list-inline-item"><a href="https://www.nicholasgacicia.com/#contact">Contact</a></li>
       </ul>
+      
       <p className="copyright">Nicholas Gacicia © 2021, All Right Reserved</p>
     </footer>
   </>

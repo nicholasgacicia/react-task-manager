@@ -55,20 +55,22 @@ const App = () => {
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
-      <div className="container">
-        {showAddTask && <AddTask
-          onAdd={addTask}
-        />}
-        {tasks.length > 0 ? (
-          <Tasks
-            tasks={tasks}
-            onDelete={deleteTask}
-            onToggle={toggleReminder}
-          />
-        ) : (
-          'You have no tasks. Great job!'
-        )}
-      </div>
+      <main>
+        <div className="container">
+          {showAddTask && <AddTask
+            onAdd={addTask}
+          />}
+          {tasks.length > 0 ? (
+            <Tasks
+              tasks={tasks}
+              onDelete={deleteTask}
+              onToggle={toggleReminder}
+            />
+          ) : (
+            'You have no tasks. Great job!'
+          )}
+        </div>
+      </main>
       <Footer />
     </div>
   )
