@@ -1,35 +1,39 @@
 import { React, useState } from 'react';
-import Header from './components/Header';
+import Header from './components/universal-comps/Header';
 import Tasks from './components/Tasks';
-import AddTask from './components/AddTask';
-import Footer from './components/Footer';
+import AddTask from './components/NewTaskForm';
+import Footer from './components/universal-comps/Footer';
 
 const App = () => {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      text: 'Doctors Appointment',
-      day: "May 5th at 2:30pm",
+      title: `Doctor's Appointment`,
+      datetime: "2021-05-24T14:00",
       reminder: true,
     },
     {
       id: 2,
-      text: 'Meeting at School',
-      day: "May 6th at 1:30pm",
+      title: 'Meeting at School',
+      datetime: "2021-05-22T17:30",
       reminder: true,
     },
     {
       id: 3,
-      text: 'Food Shopping',
-      day: "May 5th at 2:30pm",
+      title: 'Food Shopping',
+      datetime: "2021-05-218T11:30",
       reminder: false,
     }
   ])
 
   const [showAddTask, setShowAddTask] = useState(false);
+  const [isOpen, setisOpen] = useState(false);
+
+  openModal = () => this.setState({ isOpen: true });
+  closeModal = () => this.setState({ isOpen: false });
 
   // Add Task
-  const addTask = (task) => {
+  const handleSubmit = (task) => {
     const id = Math.floor(Math.random() * 1000000) + 1;
     const newTask = { id, ...task };
     setTasks([...tasks, newTask]);
@@ -58,7 +62,7 @@ const App = () => {
       <main>
         <div className="container">
           {showAddTask && <AddTask
-            onAdd={addTask}
+            onAdd={handleSubmit}
           />}
           {tasks.length > 0 ? (
             <Tasks
@@ -70,6 +74,22 @@ const App = () => {
             'You have no tasks. Great job!'
           )}
         </div>
+        <span>
+          <button
+            className="btn btn-primary"
+            onClick={this.openModal}
+          >Add Task</button>
+
+          {this.state.isOpen ?
+            <ModalForm
+              closeModal={this.closeModal}
+              isOpen={this.state.isOpen}
+              handleSubmit={this.handleSubmit}
+            />
+            :
+            null
+          }
+        </span>
       </main>
       <Footer />
     </div>
